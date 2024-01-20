@@ -8,11 +8,13 @@ on:
 
 # описание выполняемых действий
 jobs:
-  lint:
+  golangci:
     name: Run linter # название джобы
     runs-on: ubuntu-latest # описание на каком дистрибутиве работает
     steps: # описание выполняемых шагов
-      - uses: actions/checkout@v2 # публичный экшн гитхаба, checkout@v2 клонирует репу в локальную папку
+      - uses: actions/checkout@v3 # публичный экшн гитхаба, checkout@v2 клонирует репу в локальную папку
       - name: Run golangci-lint # свое название джобы линтера
-        uses: actions-contrib/golangci-lint@v1
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.54
   
