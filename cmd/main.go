@@ -13,7 +13,7 @@ func main() {
 	h := handler.NewHandler()
 	r := chi.NewRouter()
 
-	r.Get("/hello", h.Hello)
+	r.Get("/", h.Hello)
 	log.Print("Starting Server")
 	err := http.ListenAndServe(":8080", r)
 	log.Fatal(err)
