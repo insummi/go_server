@@ -10,6 +10,7 @@ import (
 	"github.com/num30/config"
 
 	handler "goserver/internal"
+	"goserver/internal/api/jokes"
 	appConf "goserver/internal/config"
 )
 
@@ -23,13 +24,15 @@ func main() {
 	}
 	fmt.Printf("%+v", cfg)
 
+	apiClient := jokes.NewJokeClient(cfg.JokeUrl)
+
 	envErr := os.Setenv("PORT", cfg.Port)
 	if envErr != nil {
 		log.Fatal(envErr)
 	}
 
 	var port = envPortOr("3000")
-	h := handler.NewHandler()
+	h := handler.NewHandler(apiClient)
 	r := chi.NewRouter()
 
 	r.Get("/", h.Hello)
