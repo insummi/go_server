@@ -11,7 +11,7 @@ RUN apk update && apk upgrade && \
 RUN go mod download
 
 # сборка бинарника в папку bin/goserver путь контейнера и путь к файлу, который нужно компилировать
-RUN go build -o bin/goserver cmd/main.go
+RUN go build -o bin/goserver cmd/app/main.go
 
 # инструкция куда должен обратиться контейнер при запуске
 ENTRYPOINT [ "bin/goserver" ]
