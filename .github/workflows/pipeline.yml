@@ -24,6 +24,29 @@ jobs:
         with:
           go-version: '1.21'
           cache: false
-      - name: Run golangci-lint # свое название джобы линтера, видно в логе пайплайна
+      - name: Run golangci-lint # шаг линтера, свое название джобы линтера, видно в логе пайплайна
         uses: golangci/golangci-lint-action@v3 # v3.0.0+ requires explicit setup-go installation step prior to using this action: uses: actions/setup-go@v3. The skip-go-installation option has been removed.
   
+  # deploy:
+  #   name: deploy
+  #   runs-on: ubuntu-latest
+  #   needs: 
+  #    - golangci # зависимость от линтера
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-go@v4
+  #       with:
+  #         go-version: '1.21'
+  #         cache: false
+  #     - name: Login to # шаг логина куда деплоим например Heroku
+  #       env: 
+  #         HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+  #       run: heroku container:login
+  #     - name: Build and Deploy # шаг деплоя
+  #       env: 
+  #         HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+  #       run: heroku container:push -a ${{secrets.HEROKU_API_KEY}} web
+  #     - name: Release # шаг релиза
+  #       env: 
+  #         HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+  #       run: heroku container:release -a ${{secrets.HEROKU_API_KEY}} web

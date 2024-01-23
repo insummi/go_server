@@ -8,9 +8,12 @@ import (
 	"github.com/go-chi/chi/v5"
 
 	handler "goserver/internal"
+	config "goserver/internal/config"
 )
 
 func main() {
+	cfg := config.Server{}
+	log.Print(cfg)
 	var port = envPortOr("3000")
 	h := handler.NewHandler()
 	r := chi.NewRouter()
