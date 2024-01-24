@@ -35,7 +35,7 @@ func main() {
 	h := handler.NewHandler(apiClient)
 	r := chi.NewRouter()
 
-	r.Get("/", h.Hello)
+	r.Get("/", h.Joke)
 	log.Println("Starting Server")
 	error := http.ListenAndServe(port, r)
 	log.Fatal(error)
